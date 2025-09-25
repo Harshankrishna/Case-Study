@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshan - Works</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="index.css">
+    <style>
+        /* Main Content */
+        main {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            max-width: 600px;
+            margin-bottom: 64px;
+        }
+
+        .section-header h1 {
+            font-size: 48px;
+            font-weight: 600;
+            margin: 0 0 16px 0;
+            line-height: 1.2;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--text-color-secondary);
+            margin: 0;
+        }
+      
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+             .work-item {
+                grid-template-columns: 1fr;
+            }
+            .work-item:nth-child(even) .work-image {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+            .section-header h1 {
+                font-size: 36px;
+            }
+            .footer-logo {
+                font-size: 80px;
+            }
+             .footer-bottom {
+                flex-direction: column;
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body class="light-mode">
+     <header>
+            <div class="container">
+                <nav>
+                    <a href="index.html" class="logo">Harshan</a>
+                    <div class="nav-links">
+                        <a href="#" style="color:rgb(0, 0, 0); font-weight: 600;">Work</a>
+                        <a href="#">About</a>
+                        <a href="store.html">Store</a>
+                        <button id="theme-toggle">
+                            <svg id="sun-icon" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                            <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+    <main>
+        <div class="container">
+            <section id="work">
+                <div class="section-header">
+                    <h1>Thoughtful Design Meets Real-World Solutions.</h1>
+                    <p>Here’s a collection of my recent work, showcasing my ability to merge creativity with functionality.</p>
+                </div>
+                <div class="work-grid">
+                     <div class="work-card project-card" data-title="Magnet Agency Website" data-description="Design Agency Framer Template for a captivating online presence. Branding and Development.">
+                            <div class="work-card-text">
+                                <img src="https://framerusercontent.com/images/sKqwJPWP1Z6z3Ny9FNM86XitKE.png" alt="Magnet Agency Icon" style="width: 24px; height: 24px;" onerror="this.onerror=null;this.src='https://placehold.co/24x24/151519/ffffff?text=M';">
+                                <h3>Magnet Agency Website</h3>
+                                <div class="work-card-tags">
+                                    <span>BRANDING</span>
+                                    <span>DEVELOPMENT</span>
+                                </div>
+                                <p>Design Agency Framer Template for a captivating online presence.</p>
+                                <a href="project.html" class="view-case-study-btn" data-project-url="project-detail.html">View Case Study →</a>
+                            </div>
+                            <div class="work-card-image">
+                                <img src="https://framerusercontent.com/images/foKetJXda4iknM8VVtkS22xPQ.jpg" alt="Magnet Agency Website Screenshot" onerror="this.onerror=null;this.src='https://placehold.co/600x400/151519/ffffff?text=Magnet';">
+                            </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Home</a> •
+                <a href="#work">Work</a> •
+                <a href="#testimonials">Testimonials</a> •
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="footer-logo">Harshan</div>
+            <div class="footer-bottom">
+                <p>© 2025 All rights reserved. Made by a human.</p>
+                <div class="social-links">
+                    <a href="#">X</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+
+     <script src="index.js"></script>
+
+</body>
+</html>

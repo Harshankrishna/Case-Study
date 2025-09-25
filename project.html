@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Detail - Mint Web Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+       :root {
+            --background-color: #101114;
+            --text-color: #ffffff;
+            --text-color-secondary: rgba(255, 255, 255, 0.6);
+            --primary-blue: #101114;
+            --primary-accent: #D4FF00;
+            --card-bg: #151519;
+            --card-border: #22232a;
+        }
+        
+        body.light-mode {
+            --background-color: #ffffff;
+            --text-color: #101114;
+            --text-color-secondary: rgba(16, 17, 20, 0.6);
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+        }
+
+         body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden; /* Prevents horizontal scrollbar */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            cursor: default; /* Use the default system cursor */
+        }
+ 
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(21, 21, 25, 0.8);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            border-bottom: 1px solid var(--card-border);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        body.light-mode header {
+             background-color: rgba(255, 255, 255, 0.8);
+        }
+
+         #theme-toggle {
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        #theme-toggle svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-color-secondary);
+            transition: fill 0.3s ease, transform 0.3s ease;
+        }
+        
+        #theme-toggle:hover svg {
+             fill: var(--text-color);
+             transform: scale(1.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 24px;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color-secondary);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-color);
+        }
+  .remix-btn {
+            background: #101114;
+            padding: 12px 24px;
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            border: none;
+            box-shadow: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .remix-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 5px 15px rgba(24, 24, 24, 0.4);
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .project-header {
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .project-header h1 {
+            font-size: 48px;
+            font-weight: 600;
+            margin: 16px 0;
+        }
+
+        .project-header p {
+            color: var(--text-color-secondary);
+            font-size: 18px;
+        }
+
+        .project-image {
+            width: 100%;
+            border-radius: 16px;
+            margin-bottom: 64px;
+        }
+
+        .project-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-bottom: 100px;
+        }
+
+        .project-content h3 {
+            font-size: 28px;
+            margin-top: 48px;
+            margin-bottom: 16px;
+        }
+
+        .project-content p, .project-content li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--text-color-secondary);
+        }
+        
+        .project-overview-details {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin: 48px 0;
+            border-top: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--card-border);
+            padding: 32px 0;
+        }
+
+        .project-overview-details h4 {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-color-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .project-overview-details p, .project-overview-details a {
+            font-size: 18px;
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0;
+        }
+        
+        .project-overview-details a:hover {
+            color: var(--primary-blue);
+        }
+
+        .project-content ol {
+            padding-left: 24px;
+        }
+        
+        .project-content li {
+            margin-bottom: 12px;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: radial-gradient(54% 82% at 50% 100%, #000000 0%, #000000 100%);
+            border-radius: 16px;
+            padding: 56px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .cta-content {
+            max-width: 768px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+        }
+
+        .cta h3 {
+            font-size: 36px;
+        }
+
+
+        footer {
+            border-top: 1px solid var(--card-border);
+            padding: 80px 0 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 64px;
+        }
+
+        .footer-links a {
+            color: var(--text-color-secondary);
+            text-decoration: none;
+        }
+        
+        .footer-logo {
+            text-align: center;
+            font-size: 175px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            line-height: 1;
+            color: rgba(255, 255, 255, 0.4);
+            -webkit-text-stroke: 1px var(--card-border);
+            margin-bottom: 40px;
+            word-break: break-all; /* Prevents overflow */
+            transition: color 0.3s ease, -webkit-text-stroke-color 0.3s ease;
+        }
+        
+        body.light-mode .footer-logo {
+            color: rgba(16, 17, 20, 0.1);
+        }
+        
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--card-border);
+            transition: border-color 0.3s ease;
+        }
+
+        .footer-bottom p {
+            color: var(--text-color-secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+        
+        @media (max-width: 809px) {
+            .container {
+                padding: 0 24px;
+            }
+            .footer-logo {
+                font-size: 80px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .project-overview-details {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body class="light-mode">
+     <header>
+            <div class="container">
+                <nav>
+                    <a href="index.html" class="logo">Harshan</a>
+                    <div class="nav-links">
+                        <a href="work.html">Work</a>
+                        <a href="#">About</a>
+                        <a href="store.html">Store</a>
+                        <button id="theme-toggle">
+                            <svg id="sun-icon" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                            <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+    <main>
+        <div id="project-detail-page" class="project-header">
+            <div class="container">
+                <h1>Mint Web Design</h1>
+                <p>SaaS Startup Framer Template</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <img src="https://framerusercontent.com/images/foKetJXda4iknM8VVtkS22xPQ.jpg" alt="Project main image" class="project-image">
+        </div>
+
+        <div class="project-content container">
+            <h3>Project Overview</h3>
+            <p>Mint is a meticulously crafted Framer template designed to elevate your SaaS startup's online presence. This project focused on creating a clean, modern, and highly functional website that not only looks great but also provides an exceptional user experience. The goal was to build a template that is easy to customize, allowing startups to launch their websites quickly and efficiently.</p>
+
+            <div class="project-overview-details">
+                <div>
+                    <h4>CLIENT</h4>
+                    <p>Mint</p>
+                </div>
+                <div>
+                    <h4>YEAR</h4>
+                    <p>2024</p>
+                </div>
+                <div>
+                    <h4>SERVICE</h4>
+                    <p>Web Design, Branding, Development</p>
+                </div>
+                <div>
+                    <h4>VISIT WEBSITE</h4>
+                    <a href="#">View Live</a>
+                </div>
+            </div>
+
+            <h3>1. Discover – Understanding the Problem</h3>
+            <p>The initial phase involved extensive research into the needs of SaaS startups. We identified common pain points, such as the need for a professional-looking website without a large budget or long development time. The primary challenge was to create a versatile template that could cater to various SaaS products while maintaining a unique and engaging design.</p>
+
+            <h3>2. Ideate – Exploring Concepts</h3>
+            <p>During the ideation phase, we explored several design concepts, focusing on different visual styles and user flows. We created wireframes and low-fidelity prototypes to test various layouts and navigation structures. The chosen concept was one that balanced a clean, minimalist aesthetic with vibrant, engaging elements to draw users in.</p>
+
+            <h3>3. Design – Bringing the Concept to Life</h3>
+            <p>In the design phase, we developed high-fidelity mockups and a comprehensive design system. We focused on creating a visually appealing interface with a clear hierarchy, intuitive navigation, and consistent branding. The color palette, typography, and imagery were carefully selected to create a modern and professional look and feel.</p>
+
+            <h3>4. Test & Refine – Perfecting the Details</h3>
+            <p>We conducted usability testing with a group of target users to gather feedback on the design and user experience. This feedback was invaluable in identifying areas for improvement and refining the design. We made several iterations to the design based on user feedback, ensuring that the final product was both user-friendly and effective.</p>
+
+            <h3>5. Deliver – Handing Off the Design</h3>
+            <p>The final phase involved preparing the design for handoff to the development team. We provided a comprehensive design system, including all necessary assets, styles, and documentation. This ensured that the development team could implement the design accurately and efficiently, resulting in a final product that was true to the original vision.</p>
+
+            <h3>Conclusion</h3>
+            <p>The Mint Web Design project was a success, resulting in a high-quality, user-friendly Framer template that meets the needs of SaaS startups. By following a structured design process, we were able to create a product that is both visually appealing and highly functional, providing a solid foundation for startups to build their online presence.</p>
+
+            <img src="https://framerusercontent.com/images/96eq2wbVDBvd814rqfzfJmJGY.png" alt="Project secondary image" class="project-image">
+        </div>
+        
+       <section class="section">
+                    <div class="container">
+                         <div class="cta">
+                            <div class="cta-content">
+                                <span class="chip">Available for new projects</span>
+                                <h3>Let’s Build Something Amazing Together.</h3>
+                                <p>Have a question or an exciting project in mind? I’d love to hear from you. Let’s create user experiences that make a difference.</p>
+                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=harshanchrisdev@gmail.com&su=Kangaal%20Lessons%20-%20You%20are%20shortlisted&body=Dear%20Designer,%0D%0A%0D%0AWe%20were%20very%20impressed%20with%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20potential%20opportunity%20with%20our%20team.%20Please%20let%20us%20know%20your%20availability%20for%20a%20brief%20chat.%0D%0A%0D%0ARegards,%0D%0A[Your%20Name]" target="_blank" class="remix-btn">Hire Me</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+    </main>
+
+     <footer>
+            <div class="container">
+                <div class="footer-links">
+                    <a href="#">Home</a> •
+                    <a href="#">Work</a> •
+                    <a href="#">Services</a> •
+                    <a href="#">Store</a> •
+                    <a href="#">Blog</a>
+                </div>
+                <div class="footer-logo">Harshan</div>
+                <div class="footer-bottom">
+                    <p>© 2025 All rights reserved. Made in Framer</p>
+                    <div class="social-links">
+                        <a href="#">X</a>
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Instagram</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    <script src="index.js"></script>
+
+</body>
+</html>
